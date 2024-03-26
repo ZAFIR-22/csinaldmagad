@@ -94,7 +94,7 @@ if (isset($_SESSION["user_id"])){
         <div class="col-md-6">
             <h2><?php echo $title; ?></h2>
             <p><?php echo $description; ?></p>
-            <img src="<?php echo $image; ?>" alt="<?php echo $title; ?>" class="img-fluid">
+            <?php echo '<img class="img-fluid" alt="'. $title . '" src="data:image/jpeg;base64,'.base64_encode($image).'"/>';?>
         </div>
         <div class="col-md-6">
           <button onclick="torles()" class="btn btn-info">Törlés</button>

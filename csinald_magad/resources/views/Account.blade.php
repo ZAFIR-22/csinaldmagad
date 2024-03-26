@@ -72,7 +72,7 @@ $creations_result = $conn->query($creations_sql);
     <div class="card mb-3 position-absolute top-50 start-50 translate-middle profile border-0 p-8">
         <div class="row g-0">
             <div class="col-md-5 profile-picture">
-                <img src="<?php echo $user_data['profile_picture']; ?>" class="img-fluid rounded-pill border border-danger-subtle border-5" alt="Profile Picture">
+            <?php echo '<img class="img-fluid rounded-pill border border-danger-subtle border-5" alt="Profile Picture" src="data:image/jpeg;base64,'.base64_encode( $user_data['profile_picture']).'"/>';?>
             </div>
             <div class="col-md-6">
                 <div class="card-body text-center" style="margin-top: 20%; !important">
@@ -94,7 +94,7 @@ $creations_result = $conn->query($creations_sql);
             <div class="card mb-3" data-creation-id="' . $creation_row["creation_id"] . '">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="' . $creation_row['image'] . '" class="img-fluid rounded-start" alt="...">
+                    <img class="img-fluid rounded-start" alt="..." src="data:image/jpeg;base64,'.base64_encode($creation_row["image"]).'"/>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

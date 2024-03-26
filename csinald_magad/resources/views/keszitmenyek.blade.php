@@ -86,7 +86,7 @@ if (isset($_SESSION["user_id"])){
             <div class="card mb-3" data-creation-id="' . $row["creation_id"] . '">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="' . $row["image"] . '" class="img-fluid rounded-start" alt="...">
+                    <img class="img-fluid rounded-start" alt="..." src="data:image/jpeg;base64,'.base64_encode($row["image"]).'"/>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

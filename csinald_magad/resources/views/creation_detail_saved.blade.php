@@ -97,33 +97,11 @@ if (isset($_SESSION["user_id"])){
             <?php echo '<img class="img-fluid" alt="'. $title . '" src="data:image/jpeg;base64,'.base64_encode($image).'"/>';?>
         </div>
         <div class="col-md-6">
-            <button id="saveCreationBtn" class="btn btn-primary">Készítés mentése</button>
             <h3>Útmutató</h3>
             <p class="instruction"><?php echo $instruction; ?></p>
         </div>
     </div>
 </div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var saveBtn = document.getElementById('saveCreationBtn');
-
-    saveBtn.addEventListener('click', function() {
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'save_creation.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                alert(xhr.responseText);
-            }
-        };
-        var creationId = <?php echo $creation_id; ?>;
-        var userId = <?php echo $_SESSION['user_id']; ?>;
-        var params = 'creation_id=' + encodeURIComponent(creationId) + '&user_id=' + encodeURIComponent(userId);
-        xhr.send(params);
-    });
-});
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -37,7 +37,12 @@ Route::get('/creationdetail', function () {
 Route::get('/feltolt', function () {
     return view('feltolt');
 });
-
 Route::get('/creationdetailaccount', function () {
     return view('creation_details_account');
+});
+Route::get('/savedcreations', function () {
+    return view('savedcreation');
+});
+Route::get('/creationdetailsaved', function () {
+    return view('creation_detail_saved');
 });

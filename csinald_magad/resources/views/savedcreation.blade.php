@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 $servername = "localhost";
@@ -12,20 +11,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if (!isset($_SESSION["user_id"])) {
-    header("Location: /login");
-    exit();
-}
 
 $user_id = $_SESSION["user_id"];
 
-$user_sql = "SELECT * FROM users WHERE user_id = $user_id";
-$user_result = $conn->query($user_sql);
-$user_data = $user_result->fetch_assoc();
-
-$creations_sql = "SELECT * FROM creations WHERE user_id = $user_id";
-$creations_result = $conn->query($creations_sql);
-
+$sql = "SELECT creations.* FROM creations 
+        JOIN savedcreations ON creations.creation_id = savedcreations.creation_id 
+        WHERE savedcreations.user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +34,8 @@ $creations_result = $conn->query($creations_sql);
     <title>Csináld Magad</title>
 </head>
 <body>
-
+<?php 
+echo '
 <nav class="navbar navbar-expand-lg mb-2" style="background-color: rgba(6, 6, 6, 0.353);">
     <div class="container-fluid">
         <a class="navbar-brand navbartext" href="#">Csináld magad</a>
@@ -57,65 +53,40 @@ $creations_result = $conn->query($creations_sql);
                 <li class="nav-item">
                     <a class="nav-link navbartext" href="/account" >Fiók</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navbartext" href="/logout">Kijelentkezés</a>
-                </li>
-                <form class="d-flex"  action="/feltolt">
-                <button class="btn">Feltöltés</button>
-            </form>
             </ul>
         </div>
     </div>
-</nav>
+</nav>';
+?>
 
-<div class="container mb-5 account">
-    <div class="card mb-3 position-absolute top-50 start-50 translate-middle profile border-0 p-8">
-        <div class="row g-0">
-            <div class="col-md-5 profile-picture">
-            <?php echo '<img class="img-fluid rounded-pill border border-danger-subtle border-5" alt="Profile Picture" src="data:image/jpeg;base64,'.base64_encode( $user_data['profile_picture']).'"/>';?>
-            </div>
-            <div class="col-md-6">
-                <div class="card-body text-center" style="margin-top: 20%; !important">
-                    <h5 class="card-title name"><?php echo $user_data['username']; ?></h5>
-                    <p class="card-text"><?php echo $user_data['email']; ?></p>
-                    <form action="savedcreations">
-                        <button class="btn btn-primary" type="submit">Mentett kreálmányok</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container munkak rounded" style="margin-top: 40%;">
-    <h1 class="text-center">Munkáim</h1>
-
+<div class="container">
     <?php
-    if ($creations_result->num_rows > 0) {
-        while ($creation_row = $creations_result->fetch_assoc()) {
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
             echo '
-            <div class="card cardaccount mb-3" data-creation-id="' . $creation_row["creation_id"] . '">
+            <div class="card mb-3" data-creation-id="' . $row["creation_id"] . '">
                 <div class="row g-0">
                     <div class="col-md-4">
-                    <img class="img-fluid rounded-start" alt="..." src="data:image/jpeg;base64,'.base64_encode($creation_row["image"]).'"/>
+                    <img class="img-fluid rounded-start" alt="..." src="data:image/jpeg;base64,'.base64_encode($row["image"]).'"/>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">' .  $creation_row['title'] . '</h5>
-                            <p class="card-text">' . $creation_row['description'] . '</p>
+                            <h5 class="card-title">' . $row["title"] . '</h5>
+                            <p class="card-text">' . $row["description"] . '</p>
                         </div>
                     </div>
                 </div>
             </div>';
         }
     } else {
-        echo "Nincsenek adatok.";
+        echo "Nincsenek mentett készítések.";
     }
     ?>
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    var cards = document.querySelectorAll('.cardaccount');
+    var cards = document.querySelectorAll('.card');
+
     cards.forEach(function(card) {
         card.addEventListener('click', function() {
             var creationId = this.dataset.creationId;
@@ -123,15 +94,15 @@ document.addEventListener("DOMContentLoaded", function() {
             xhr.open('GET', 'store_creation_id.php?id=' + creationId, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    window.location.href = '/creationdetailaccount';
+                    window.location.href = '/creationdetailsaved';
                 }
             };
             xhr.send();
         });
     });
 });
-
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

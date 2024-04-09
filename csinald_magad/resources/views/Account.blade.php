@@ -87,7 +87,7 @@ $creations_result = $conn->query($creations_sql);
     </div>
 </div>
 
-<div class="container munkak rounded" style="margin-top: 40%;">
+<div class="container munkak rounded MK" style="margin-top: 40%;">
     <h1 class="text-center">Munkáim</h1>
 
     <?php

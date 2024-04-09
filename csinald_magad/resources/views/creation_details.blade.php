@@ -97,7 +97,13 @@ if (isset($_SESSION["user_id"])){
             <?php echo '<img class="img-fluid" alt="'. $title . '" src="data:image/jpeg;base64,'.base64_encode($image).'"/>';?>
         </div>
         <div class="col-md-6">
+        <?php
+          if (isset($_SESSION["user_id"])){
+            echo '
             <button id="saveCreationBtn" class="btn btn-primary">Készítés mentése</button>
+              ';
+            } 
+        ?>
             <h3>Útmutató</h3>
             <p class="instruction"><?php echo $instruction; ?></p>
         </div>
@@ -118,7 +124,10 @@ if (isset($_SESSION["user_id"])){
             }
         };
         var creationId = <?php echo $creation_id; ?>;
-        var userId = <?php echo $_SESSION['user_id']; ?>;
+        var userId = <?php if (isset($_SESSION["user_id"])){
+            echo $_SESSION["user_id"] ;
+            } else {
+              echo '';} ?>;
         var params = 'creation_id=' + encodeURIComponent(creationId) + '&user_id=' + encodeURIComponent(userId);
         xhr.send(params);
     });

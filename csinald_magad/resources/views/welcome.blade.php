@@ -21,10 +21,10 @@ if (isset($_SESSION["user_id"])){
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link navbartext" aria-current="page" href="/">Főoldals</a>
+                <a class="nav-link navbartext" aria-current="page" href="/">Főoldal</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link navbartext" href="keszitmenyek">Készjtmények</a>
+                <a class="nav-link navbartext" href="keszitmenyek">Készítmények</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link navbartext" href="/account" >Fiók</a>
@@ -44,10 +44,10 @@ if (isset($_SESSION["user_id"])){
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link navbartext" aria-current="page" href="/">Főoldals</a>
+                <a class="nav-link navbartext" aria-current="page" href="/">Főoldal</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link navbartext" href="keszitmenyek">Készjtmények</a>
+                <a class="nav-link navbartext" href="keszitmenyek">Készítmények</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link navbartext" href="/login" >Bejelentkezés</a>
@@ -85,8 +85,8 @@ if (isset($_SESSION["user_id"])){
 
     <div class="container shadow p-3 mb-5 rounded" style="height:max-content; background-color: rgba(0, 0, 0, 0.5);">
         <div class="row justify-content-center align-items-start">
-            <h1>Bemtatkozás</h1>
-            <h5>
+            <h1 class="bemut">Bemtatkozás</h1>
+            <h5 class="szoveg"><br>
                 Üdvözöllek a Csináld Magad nevű weboldalon! Ez a közösségi platform arra szolgál, hogy mindenki megmutathassa saját kreatív alkotásait, és mások is láthassák azokat. Itt az alkotók bemutathatják létrehozott műveiket, valamint lépésről lépésre megoszthatják az alkotás folyamatát. Legyen szó barkácsolásról, varrásról, kézművességről, főzésről vagy bármilyen más házi készítésű dologról, itt találhatsz ötleteket és inspirációt. Emellett nem csak arról van szó, hogy bemutatod, mit alkottál - hanem arról is, hogy tanulsz másoktól és kapcsolatba lépsz hasonlóan gondolkodó alkotókkal. Böngészd át a folyamatosan bővülő projektgyűjteményünket, inspirálódj mások által elért eredményekből, és csatlakozz a közösséghez, hogy te is megoszd saját alkotásaidat és technikáidat. Legyen szó egy tapasztalt házi készítőről vagy épp csak a kézműves útjára lépő kezdőről, itt mindenki megtalálja a kreativitás végtelen lehetőségeit. Indulj velünk a DIY kalandban!
             </h5>
         </div>

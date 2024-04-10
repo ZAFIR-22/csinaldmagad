@@ -21,10 +21,10 @@ if (isset($_SESSION["user_id"])){
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link navbartext" aria-current="page" href="/">Főoldals</a>
+                <a class="nav-link navbartext" aria-current="page" href="/">Főoldal</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link navbartext" href="keszitmenyek">Készjtmények</a>
+                <a class="nav-link navbartext" href="keszitmenyek">Készítmények</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link navbartext" href="/account" >Fiók</a>
@@ -44,10 +44,10 @@ if (isset($_SESSION["user_id"])){
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link navbartext" aria-current="page" href="/">Főoldals</a>
+                <a class="nav-link navbartext" aria-current="page" href="/">Főoldal</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link navbartext" href="keszitmenyek">Készjtmények</a>
+                <a class="nav-link navbartext" href="keszitmenyek">Készítmények</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link navbartext" href="/login" >Bejelentkezés</a>
@@ -68,18 +68,18 @@ if (isset($_SESSION["user_id"])){
                           <input type="text" class="form-control" id="username" name="username">
                       </div>
                       <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <label for="exampleInputEmail1" class="form-label">Email Cím</label>
                           <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
                       </div>
                       <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <label for="exampleInputPassword1" class="form-label">Jelszó</label>
                           <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                       </div>
                       <div class="mb-3">
-                          <label class="form-label" for="profilePicture">Profile Picture</label>
+                          <label class="form-label" for="profilePicture">Profil Kép</label>
                           <input type="file" class="form-control" id="profilePicture" name="profile_picture">
                       </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary">Regisztráció</button>
                   </form>
                 </div>
             </div>

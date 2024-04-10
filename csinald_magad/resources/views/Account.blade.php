@@ -49,10 +49,10 @@ $creations_result = $conn->query($creations_sql);
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link navbartext" aria-current="page" href="/">Főoldals</a>
+                    <a class="nav-link navbartext" aria-current="page" href="/">Főoldal</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbartext" href="keszitmenyek">Készjtmények</a>
+                    <a class="nav-link navbartext" href="keszitmenyek">Készítmények</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navbartext" href="/account" >Fiók</a>
